@@ -1,0 +1,8 @@
+{
+  "name": "ais-listener",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": { "start": "node index.js" },
+  "dependencies": { "ws": "^8.18.0" }
+}
