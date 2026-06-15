@@ -4,8 +4,14 @@ const AISSTREAM_KEY = process.env.AISSTREAM_API_KEY;
 const INGEST_URL = process.env.INGEST_URL;       // the edge function URL
 const INGEST_SECRET = process.env.INGEST_SECRET; // must match x-ingest-secret in Lovable
 
-// Gulf of Finland / eastern Baltic bounding box [[lat,lng],[lat,lng]]
-const BOUNDING_BOX = [[58.5, 22.0], [60.7, 30.5]];
+// Coverage zones — each is [[swLat, swLng], [neLat, neLng]]
+const BOUNDING_BOXES = [
+  [[58.5, 22.0], [60.7, 30.5]],   // Gulf of Finland / Baltic
+  [[49.5, -1.5], [51.5, 2.5]],     // English Channel
+  [[51.0, 1.0], [54.0, 5.0]],      // Southern North Sea
+  [[51.0, -6.0], [55.0, -2.5]],    // Irish Sea
+  [[50.0, -11.0], [55.5, -6.0]],   // West of Ireland / Celtic Sea
+];
 
 let buffer = [];
 
@@ -42,10 +48,10 @@ function connect() {
   ws.on("open", () => {
     console.log("connected to AISStream");
     ws.send(JSON.stringify({
-      APIKey: AISSTREAM_KEY,
-      BoundingBoxes: [BOUNDING_BOX],
-      FilterMessageTypes: ["PositionReport"]
-    }));
+  APIKey: AISSTREAM_KEY,
+  BoundingBoxes: BOUNDING_BOXES,
+  FilterMessageTypes: ["PositionReport"]
+}));
   });
 
   ws.on("message", (raw) => {
