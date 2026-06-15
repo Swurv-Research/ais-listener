@@ -8,7 +8,7 @@ const INGEST_SECRET = process.env.INGEST_SECRET; // must match x-ingest-secret i
 const BOUNDING_BOXES = [
   [[58.5, 22.0], [60.7, 30.5]],   // Gulf of Finland / Baltic
   [[49.5, -1.5], [51.5, 2.5]],     // English Channel
-  [[51.0, 1.0], [54.0, 5.0]],      // Southern North Sea
+  [[51.0, -2.0], [59.0, 5.0]],     // North Sea (UK east coast to Scotland)
   [[51.0, -6.0], [55.0, -2.5]],    // Irish Sea
   [[50.0, -11.0], [55.5, -6.0]],   // West of Ireland / Celtic Sea
 ];
